@@ -7,7 +7,7 @@ import yarema.project.toystore.entity.Type;
 import yarema.project.toystore.service.AbstractCRUDService;
 
 @RestController
-@RequestMapping("/api/v1/Type")
+@RequestMapping("/api/v1/type")
 public class TypeController extends AbstractCRUDController<Type> {
     public TypeController(AbstractCRUDService<Type> service) {
         super(service);
