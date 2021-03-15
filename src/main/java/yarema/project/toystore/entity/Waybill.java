@@ -1,15 +1,15 @@
 package yarema.project.toystore.entity;
 
 import lombok.Data;
+import yarema.project.toystore.interfaces.IEntity;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Data
 @Entity
-public class Waybill {
+public class Waybill implements IEntity {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private Integer count;

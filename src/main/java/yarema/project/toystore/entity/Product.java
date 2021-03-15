@@ -2,15 +2,17 @@ package yarema.project.toystore.entity;
 
 
 import lombok.Data;
+import yarema.project.toystore.interfaces.IEntity;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Data
 @Entity
-public class Product {
+public class Product implements IEntity {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
+
     private Long id;
 
     private String name;

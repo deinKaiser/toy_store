@@ -13,6 +13,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         web.ignoring().antMatchers(
                 // -- Ignore api routes
                 "/api/v1/**",
+                "/api/v2/**",
                 // -- Swagger UI v2
                 "/v2/api-docs",
                 "/swagger-resources",
