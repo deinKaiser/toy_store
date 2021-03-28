@@ -1,12 +1,18 @@
 package yarema.project.toystore.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import yarema.project.toystore.interfaces.IEntity;
 
 import javax.persistence.*;
 
 @Data
 @Entity
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Waybill implements IEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
