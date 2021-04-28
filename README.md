@@ -1,3 +1,3 @@
 # toy_store
 
-#Repository for school project.
+# Repository for school project.
