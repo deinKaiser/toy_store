@@ -3,6 +3,7 @@ package yarema.project.toystore.controller.api;
 import io.swagger.annotations.ApiOperation;
 import javassist.NotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import yarema.project.toystore.interfaces.IDTO;
 import yarema.project.toystore.interfaces.IDTOService;
@@ -17,6 +18,7 @@ public abstract class AbstractDTOApiController<TEntity extends IEntity, TRequest
 
     @ApiOperation(value = "Get list of entities")
     @RequestMapping(value = "/", method = RequestMethod.GET)
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     public List<TResponseDTO> getAll(
             @RequestParam(required = false, defaultValue = "10") Integer size,
             @RequestParam(required = false, defaultValue = "1") Integer page
@@ -34,24 +36,28 @@ public abstract class AbstractDTOApiController<TEntity extends IEntity, TRequest
 
     @ApiOperation(value = "Get single entity by id")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     public TResponseDTO getById(@PathVariable Long id) throws NotFoundException {
         return service.findById(id);
     }
 
     @ApiOperation(value = "Delete entity by id")
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public void deleteById(@PathVariable Long id) throws NotFoundException {
         service.deleteById(id);
     }
 
     @ApiOperation(value = "Update entity by id")
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public TResponseDTO update(@PathVariable Long id, @RequestBody TRequestDTO dto) throws NotFoundException {
         return service.update(id, dto);
     }
 
     @ApiOperation(value = "Create entity")
     @RequestMapping(value = "/", method = RequestMethod.POST)
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public TResponseDTO create(@RequestBody TRequestDTO dto) throws NotFoundException {
         return service.create(dto);
     }

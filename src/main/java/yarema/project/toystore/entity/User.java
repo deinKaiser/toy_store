@@ -8,6 +8,7 @@ import yarema.project.toystore.interfaces.IEntity;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity(name = "users")
@@ -27,5 +28,13 @@ public class User implements IEntity {
 
     @OneToMany(mappedBy = "user")
     private List<Waybill> waybills;
+
+    private String password;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles;
 }
 
